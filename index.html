@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rishi_raturi - Terminal Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <style>
+    /* Animated Gradient Background */
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Roboto Mono', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #e0e0e0;
+      background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+      background-size: 600% 600%;
+      animation: gradient 15s ease infinite;
+    }
+    .terminal {
+      width: 90%;
+      max-width: 800px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+    .terminal-header {
+      background: #333;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+    }
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+    .red    { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green  { background: #27c93f; }
+    .header-title {
+      font-size: 1rem;
+      color: #e0e0e0;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .terminal-body {
+      padding: 20px;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+    .profile-img {
+      display: block;
+      margin: 20px auto;
+      width: 120px;
+      height: 120px;
+      border: 2px solid #27c93f;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .prompt-line {
+      margin: 15px 0 5px;
+    }
+    .prompt {
+      color: #6af;
+      margin-right: 5px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 1rem;
+      margin: 0 0 15px;
+      line-height: 1.6;
+    }
+    .links a {
+      color: #27c93f;
+      text-decoration: underline;
+      margin: 0 10px;
+      transition: color 0.2s;
+    }
+    .links a:hover {
+      color: #6af;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="circle red"></div>
+      <div class="circle yellow"></div>
+      <div class="circle green"></div>
+      <span class="header-title">rishi_raturi</span>
+    </div>
+    <div class="terminal-body">
+      <!-- Centered profile image (if you wish to display one, else you may remove this block) -->
+      <img src="image.png" alt="Profile Image" class="profile-img">
+      <div class="prompt-line">
+        <span class="prompt">rishirats@linux:~$</span> cat profile.txt
+      </div>
+      <pre>
+Adaptable, friendly, energetic, punctual and reliable engineer with expertise in networking, IT, cybersecurity, electronics, IoT and embedded systems is presently enrolled in University of Galway master's program in cybersecurity risk management.
+Worked in startups.
+Likes to be enabler of good things with business and technology.
+Excited to support by sharing knowledge and enthusiasm for development in businesses and technology for betterment in the world with skills in research and technical problem-solving.
+      </pre>
+      <div class="prompt-line">
+        <span class="prompt">rishirats@linux:~$</span> echo "Connect:"
+      </div>
+      <div class="links">
+        <a href="https://www.youtube.com/@rishirats" target="_blank">YouTube</a> | 
+        <a href="https://www.linkedin.com/in/rishi-raturi/" target="_blank">LinkedIn</a>
+      </div>
+      <div class="prompt-line">
+        <span class="prompt">rishirats@linux:~$</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
