@@ -1,131 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>rishi_raturi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
-  <style>
-    /* Animated Gradient Background */
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rishi Raturi · Cybersecurity Risk Management</title>
 
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'Roboto Mono', monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: #e0e0e0;
-      background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
-      background-size: 600% 600%;
-      animation: gradient 15s ease infinite;
-    }
-    .terminal {
-      width: 90%;
-      max-width: 800px;
-      background: #1e1e1e;
-      border: 1px solid #333;
-      border-radius: 5px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.8);
-      overflow: hidden;
-    }
-    .terminal-header {
-      background: #333;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-    }
-    .circle {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      margin-right: 6px;
-    }
-    .red    { background: #ff5f56; }
-    .yellow { background: #ffbd2e; }
-    .green  { background: #27c93f; }
-    .header-title {
-      font-size: 1rem;
-      color: #e0e0e0;
-      font-weight: bold;
-      margin-left: 10px;
-    }
-    .terminal-body {
-      padding: 20px;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-    .profile-img {
-      display: block;
-      margin: 20px auto;
-      width: 120px;
-      height: 120px;
-      border: 2px solid #27c93f;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .prompt-line {
-      margin: 15px 0 5px;
-    }
-    .prompt {
-      color: #6af;
-      margin-right: 5px;
-    }
-    pre {
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      background: none;
-      border: none;
-      font-family: inherit;
-      font-size: 1rem;
-      margin: 0 0 15px;
-      line-height: 1.6;
-    }
-    .links a {
-      color: #27c93f;
-      text-decoration: underline;
-      margin: 0 10px;
-      transition: color 0.2s;
-    }
-    .links a:hover {
-      color: #6af;
-    }
-  </style>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* catppuccin-ish, glossy */
+  --bg-1:#1e1e2e;
+  --bg-2:#11111b;
+  --grad-a:#8bd5ff;   /* sky */
+  --grad-b:#cba6f7;   /* mauve */
+  --grad-c:#a6e3a1;   /* green */
+  --text:#e6e9f2;
+  --muted:#b2b6c7;
+  --chip:#232436;
+  --chip-br:#3a3d58;
+  --card:#1a1b2a80;   /* translucent */
+  --card-br:#3a3d58aa;
+  --ring:#8bd5ff66;
+  --glow: 0 10px 50px rgba(0,0,0,.45), 0 0 40px rgba(203,166,247,.14);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--text);
+  font: 16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 110% -10%, rgba(171, 205, 255, .12), transparent 60%),
+    radial-gradient(900px 600px at -10% 120%, rgba(166, 227, 161, .10), transparent 60%),
+    linear-gradient(135deg, #181826 0%, #0f1020 100%);
+}
+
+/* navbar */
+.nav{
+  position:sticky; top:0; z-index:10;
+  display:flex; gap:12px; align-items:center; justify-content:center;
+  padding:10px 16px; backdrop-filter: blur(10px);
+  background:linear-gradient(180deg, rgba(17,17,27,.65), rgba(17,17,27,.35));
+  border-bottom:1px solid #2b2d43;
+}
+.brand{font-weight:700; letter-spacing:.2px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:999px;margin-right:6px}
+.dot.g{background:#36d399}.dot.y{background:#fbbf24}.dot.r{background:#ef4444}
+.nav a{color:var(--muted); text-decoration:none; margin:0 8px}
+.nav a:hover{color:#a6e3a1}
+
+/* layout */
+.container{max-width:1100px;margin:36px auto;padding:0 20px;display:grid;gap:18px}
+.grid-2{display:grid;gap:18px}
+@media (min-width: 900px){ .grid-2{grid-template-columns:1.1fr .9fr}}
+
+/* cards */
+.card{
+  background: var(--card);
+  border:1px solid var(--card-br);
+  border-radius:16px;
+  backdrop-filter: blur(16px) saturate(1.1);
+  box-shadow: var(--glow);
+  padding:18px;
+}
+.card h2{margin:2px 0 10px 0; font-size:20px; letter-spacing:.2px}
+.card h3{margin:0 0 10px 0; font-size:18px}
+.card p{margin:.35rem 0}
+
+/* header / hero */
+.hero{
+  position:relative; overflow:hidden;
+  display:flex; gap:18px; align-items:center;
+  padding:20px;
+  background:
+    linear-gradient(180deg, rgba(139,213,255,.09), transparent 35%),
+    var(--card);
+  border:1px solid var(--card-br); border-radius:20px; backdrop-filter: blur(16px);
+  box-shadow: var(--glow);
+}
+.avatar{
+  width:120px; height:120px; border-radius:999px; object-fit:cover;
+  border:2px solid #a6e3a1; box-shadow: 0 0 0 5px rgba(166,227,161,.08), 0 8px 30px rgba(0,0,0,.35);
+}
+.title{display:flex; flex-direction:column; gap:6px}
+.name{font-size:28px; font-weight:700; letter-spacing:.3px}
+.role{font:700 17px "JetBrains Mono", monospace; color:#cdd6f4}
+.meta{color:var(--muted); font-size:14px}
+.links a{color:#89dceb; text-decoration:none; margin-right:14px}
+.links a:hover{color:#a6e3a1}
+
+/* chips/tags */
+.tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.tag{
+  background:linear-gradient(180deg, #20223a, #17182a);
+  border:1px solid var(--chip-br);
+  color:#eaeaf7; font:600 12px/1 "JetBrains Mono", monospace;
+  padding:7px 10px; border-radius:999px;
+}
+
+/* timeline lists */
+ul.clean{padding-left:1.2rem; margin:0}
+ul.clean li{margin:.3rem 0}
+.sep{height:1px; background:linear-gradient(90deg, transparent, #2f3148, transparent); margin:10px 0}
+
+/* project cards */
+.proj{
+  border-radius:16px; padding:16px; border:1px solid #2e3350; background:linear-gradient(180deg,#252742bb,#1a1c35bb);
+  box-shadow: inset 0 0 0 1px rgba(137,180,250,.10), 0 12px 40px rgba(0,0,0,.35);
+}
+.proj h4{margin:0 0 6px 0; font-size:17px}
+.proj a{color:#89b4fa; text-decoration:none}
+.proj a:hover{color:#a6e3a1}
+
+/* gradient accents */
+.accent{
+  border:1px solid #2b2f4a;
+  background:
+    radial-gradient(1200px 400px at -10% -40%, rgba(203,166,247,.15), transparent 60%),
+    radial-gradient(900px 420px at 120% 140%, rgba(137,180,250,.12), transparent 60%),
+    linear-gradient(180deg, #20223a, #151729);
+}
+footer{color:var(--muted); text-align:center; margin:30px 0 60px}
+</style>
 </head>
 <body>
-  <div class="terminal">
-    <div class="terminal-header">
-      <div class="circle red"></div>
-      <div class="circle yellow"></div>
-      <div class="circle green"></div>
-      <span class="header-title">rishi_raturi</span>
-    </div>
-    <div class="terminal-body">
-      <!-- Centered profile image (if you wish to display one, else you may remove this block) -->
-      <img src="image.png" alt="Profile Image" class="profile-img">
-      <div class="prompt-line">
-        <span class="prompt">rishirats@linux:~$</span> cat profile.txt
-      </div>
-      <pre>
-Adaptable, friendly, energetic, punctual and reliable engineer with expertise in networking, IT, cybersecurity, electronics, IoT and embedded systems is presently enrolled in University of Galway master's program in cybersecurity risk management. Worked in startups. Likes to be enabler of good things with business and technology. Excited to support by sharing knowledge and enthusiasm for development in businesses and technology for betterment in the world with skills in research and technical problem-solving.
-      </pre>
-      <div class="prompt-line">
-        <span class="prompt">rishirats@linux:~$</span> echo "Connect:"
-      </div>
+
+<!-- minimal top bar -->
+<div class="nav">
+  <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+  <span class="brand">rishirats</span>
+  <span style="flex:1"></span>
+  <a href="mailto:rishi74744@outlook.com">email</a>
+  <a href="https://www.linkedin.com/in/rishi-raturi/" target="_blank" rel="noopener">linkedin</a>
+  <a href="https://www.youtube.com/@rishirats" target="_blank" rel="noopener">youtube</a>
+</div>
+
+<div class="container">
+
+  <!-- Hero -->
+  <section class="hero accent">
+    <img class="avatar" src="image.png" alt="Rishi Raturi">
+    <div class="title">
+      <div class="name">Rishi Raturi</div>
+      <div class="role">Cybersecurity Risk Management</div>
+      <div class="meta">Galway, Ireland (flexible with relocation)</div>
       <div class="links">
-        <a href="https://www.youtube.com/@rishirats" target="_blank">YouTube</a> | 
-        <a href="https://www.linkedin.com/in/rishi-raturi/" target="_blank">LinkedIn</a>
+        <a href="mailto:rishi74744@outlook.com">rishi74744@outlook.com</a>
+        <a href="https://www.linkedin.com/in/rishi-raturi/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/@rishirats" target="_blank" rel="noopener">YouTube</a>
       </div>
-      <div class="prompt-line">
-        <span class="prompt">rishirats@linux:~$</span>
+      <div class="tags">
+        <span class="tag">AWS</span><span class="tag">Lambda</span><span class="tag">API Gateway</span>
+        <span class="tag">ECR</span><span class="tag">Docker</span><span class="tag">Linux</span>
+        <span class="tag">Networking</span><span class="tag">Python</span><span class="tag">Risk Mgmt</span>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- About + Skills -->
+  <section class="grid-2">
+    <div class="card accent">
+      <h2>About</h2>
+      <p>Cybersecurity Risk Management graduate who enjoys clean systems, reproducible infra, and building practical security tools.
+        Comfortable across <strong>AWS</strong> (S3, Lambda, API Gateway, ECR, EC2), <strong>Docker</strong>, <strong>Linux</strong>, core
+        networking and Python. I care about simplicity, reliability and privacy.</p>
+    </div>
+
+    <div class="card">
+      <h2>Key Skills</h2>
+      <div class="tags">
+        <span class="tag">Access Control</span><span class="tag">Threat Detection</span>
+        <span class="tag">Vulnerability Mgmt</span><span class="tag">Incident Response</span>
+        <span class="tag">TCP/IP</span><span class="tag">Wireshark</span><span class="tag">VPN</span>
+        <span class="tag">AWS (S3/Lambda/API GW/ECR/EC2)</span><span class="tag">Docker</span>
+        <span class="tag">Python</span><span class="tag">VirtualBox</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="card accent">
+    <h2>Projects</h2>
+    <div class="proj">
+      <h4><a href="https://nophishybusiness.vercel.app/" target="_blank" rel="noopener">No Phishy Business</a></h4>
+      <p>ML-backed phishing-URL detector. Model artifacts on <strong>S3</strong>; inference via containerised
+        <strong>Lambda</strong> (image in <strong>ECR</strong>); <strong>API Gateway</strong> HTTP endpoint; frontend on <strong>Vercel</strong>.</p>
+      <div class="tags"><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Python</span><span class="tag">scikit-learn</span><span class="tag">joblib</span></div>
+    </div>
+    <div class="sep"></div>
+    <div class="proj">
+      <h4><a href="https://youtu.be/8Ru6oYtYfB4?feature=shared" target="_blank" rel="noopener">Smart Mirror</a></h4>
+      <p>Raspberry-Pi powered mirror with local widgets and voice triggers; privacy-first on-device control.</p>
+      <div class="tags"><span class="tag">Raspberry Pi</span><span class="tag">Python</span></div>
+    </div>
+    <div class="sep"></div>
+    <div class="proj">
+      <h4><a href="https://youtu.be/S1QRfSFW2Uk?feature=shared" target="_blank" rel="noopener">RPI Vision (Smart Glasses)</a></h4>
+      <p>Mixed-reality prototype with a ring controller; lightweight UX and real-world awareness.</p>
+      <div class="tags"><span class="tag">Embedded</span><span class="tag">Prototyping</span></div>
+    </div>
+  </section>
+
+  <!-- Experience & Education -->
+  <section class="grid-2">
+    <div class="card">
+      <h2>Experience</h2>
+      <ul class="clean">
+        <li><strong>Project Intern — BARC</strong> (Jul 2023 – Apr 2024): improved assessment for safety-critical components; stakeholder comms.</li>
+        <li><strong>Python Mentor — Source Catalyst</strong> (Oct 2021 – Jul 2023): mentored 500+ learners; recorded a reusable lesson library.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Education</h2>
+      <ul class="clean">
+        <li>University of Galway — MSc Cybersecurity Risk Management (2:1), 2024–2025</li>
+        <li>University of Mumbai — BEng EXTC (Hons. Cybersecurity) (2:1), 2020–2024</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="card">
+    <h2>Certifications</h2>
+    <ul class="clean">
+      <li>CompTIA Security+ — Jul 2025</li>
+      <li>GDPR (University of Galway) — Apr 2025</li>
+      <li>Mastercard Cybersecurity Job Simulation — Aug 2024</li>
+      <li>Networking Basics (Cisco) — Jul 2023</li>
+      <li>Google Data Analytics — Dec 2023</li>
+      <li>Harvard CS50T — Nov 2022</li>
+      <li>Python for Everyone — Feb 2022</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>© <script>document.write(new Date().getFullYear())</script> Rishi Raturi</footer>
 </body>
 </html>
